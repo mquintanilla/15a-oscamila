@@ -22,13 +22,11 @@ body{
   overflow-x:hidden;
 }
 
-/* CANVAS FOR BUTTERFLIES */
 #butterflyCanvas{
   position:fixed;top:0;left:0;width:100%;height:100%;
   z-index:1000;pointer-events:none;
 }
 
-/* FLOATING PETALS */
 .floating-petal{
   position:fixed;pointer-events:none;z-index:999;opacity:0;
   animation:petalFall linear infinite;
@@ -41,27 +39,23 @@ body{
   100%{opacity:0;transform:translateY(110vh) rotate(360deg) translateX(-20px)}
 }
 
-/* ROSE BOUQUETS */
+/* ── SVG FLOWER BOUQUETS ── */
 .bouquet{
-  position:absolute;pointer-events:none;z-index:1;
+  position:absolute;pointer-events:none;z-index:3;
+  animation:bouquetSway 5s ease-in-out infinite;
 }
-.bouquet svg{
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-}
-.bouquet.top-left{top:-10px;left:-10px}
-.bouquet.top-right{top:-10px;right:-10px}
-.bouquet.bot-left{bottom:-10px;left:-10px}
-.bouquet.bot-right{bottom:-10px;right:-10px}
+.bouquet.sway-b{ animation-direction:reverse; animation-duration:6s; }
 
-.bouquet.sway-a svg{animation:bouquetSway 5s ease-in-out infinite}
-.bouquet.sway-b svg{animation:bouquetSway 6s ease-in-out infinite reverse}
+.bouquet.top-left { top:-8px; left:-8px; width:clamp(150px,32vw,220px); transform-origin:top left; }
+.bouquet.top-right{ top:-8px; right:-8px; width:clamp(160px,34vw,240px); transform-origin:top right; }
+.bouquet.bot-left { bottom:-8px; left:-8px; width:clamp(130px,28vw,200px); transform-origin:bottom left; }
+.bouquet.bot-right{ bottom:-8px; right:-8px; width:clamp(130px,28vw,200px); transform-origin:bottom right; }
+
 @keyframes bouquetSway{
   0%,100%{transform:rotate(0deg) scale(1)}
-  25%{transform:rotate(2deg) scale(1.02)}
-  75%{transform:rotate(-2deg) scale(0.98)}
+  50%{transform:rotate(2deg) scale(1.02)}
 }
 
-/* SPARKLES */
 .sparkle{
   position:fixed;pointer-events:none;z-index:998;
   width:3px;height:3px;border-radius:50%;
@@ -74,13 +68,11 @@ body{
   100%{opacity:0;transform:translateY(-60px) scale(0)}
 }
 
-/* SECTIONS */
 section{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   flex-direction:column;position:relative;padding:40px 20px;overflow:hidden;
 }
 
-/* HERO */
 .hero{
   background:linear-gradient(180deg,#0c2240 0%,#112d4e 40%,#0a1e33 100%);
   text-align:center;
@@ -154,7 +146,6 @@ section{
 }
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
 
-/* RECEPTION */
 .reception{background:linear-gradient(180deg,#0a1e33,#0e2541,#0a1e33);text-align:center}
 .section-title{font-family:'Great Vibes',cursive;font-size:42px;color:#a8d4f0;margin-bottom:30px}
 .reception-card{
@@ -175,7 +166,6 @@ section{
 .map-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(91,163,217,0.4)}
 .map-btn svg{width:20px;height:20px}
 
-/* RSVP */
 .rsvp{background:linear-gradient(180deg,#0a1e33,#0e2541,#0a1e33);text-align:center}
 .rsvp-card{
   background:rgba(14,37,65,0.7);backdrop-filter:blur(10px);
@@ -213,7 +203,6 @@ section{
 .success-msg h3{font-family:'Great Vibes',cursive;font-size:32px;color:#a8d4f0}
 .success-msg p{font-family:'Montserrat',sans-serif;font-size:13px;color:#b0c8e0;margin-top:5px}
 
-/* Countdown */
 .countdown{display:flex;gap:15px;justify-content:center;margin:25px 0}
 .countdown-item{
   text-align:center;background:rgba(168,212,240,0.08);
@@ -225,13 +214,35 @@ section{
 .divider{width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(192,192,192,0.4),transparent);margin:15px auto}
 
 @media(max-width:480px){
-  .name{font-size:54px}
-  .title-15 span{font-size:60px}
-  .section-title{font-size:34px}
-  .date-box{gap:12px}
-  .date-box .day-num{font-size:48px}
-  .geo-frame{padding:35px 15px}
-  .bouquet svg{width:120px!important;height:120px!important}
+  .name{font-size:48px}
+  .title-15{font-size:32px}
+  .title-15 span{font-size:56px}
+  .section-title{font-size:30px}
+  .date-box{gap:10px;flex-wrap:wrap}
+  .date-box .day-num{font-size:44px}
+  .date-box .day-name{font-size:11px;letter-spacing:2px}
+  .date-box .month{font-size:13px;letter-spacing:3px}
+  .date-box .time{font-size:12px;padding:6px 12px}
+  .geo-frame{padding:30px 10px}
+  .invite-text{font-size:17px}
+  .venue{font-size:11px;letter-spacing:1.5px}
+  .te-esperamos{font-size:28px}
+  .countdown{gap:8px;flex-wrap:wrap;justify-content:center}
+  .countdown-item{min-width:55px;padding:10px 12px}
+  .countdown-item .num{font-size:22px}
+  .countdown-item .lbl{font-size:8px;letter-spacing:1.5px}
+  .reception-card,.rsvp-card{padding:28px 20px;margin:0 10px}
+  .reception-card .venue-name{font-size:20px}
+  .map-buttons{flex-direction:column;gap:10px}
+  .map-btn{padding:12px 24px;font-size:13px;justify-content:center}
+  .form-group input{padding:12px 14px;font-size:16px}
+  .confirm-btn{padding:14px;font-size:13px;letter-spacing:1.5px}
+  .bouquet.top-left,.bouquet.top-right{width:clamp(110px,28vw,160px)}
+  .bouquet.bot-left,.bouquet.bot-right{width:clamp(100px,26vw,150px)}
+  .hero{padding:30px 12px}
+  section{padding:30px 12px}
+  .crown-icon{font-size:22px}
+  .scroll-hint{font-size:22px;bottom:20px}
 }
 </style>
 </head>
@@ -239,134 +250,215 @@ section{
 
 <canvas id="butterflyCanvas"></canvas>
 
-<!-- HERO SECTION -->
+<!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <!-- ROSE BOUQUETS -->
+
+  <!-- ── BOUQUET TOP-LEFT ── -->
   <div class="bouquet top-left sway-a">
-    <svg width="180" height="180" viewBox="0 0 200 200" fill="none">
-      <!-- Leaves -->
-      <ellipse cx="55" cy="140" rx="35" ry="12" fill="#1a5c3a" opacity="0.7" transform="rotate(-40 55 140)"/>
-      <ellipse cx="140" cy="130" rx="30" ry="10" fill="#1a5c3a" opacity="0.6" transform="rotate(30 140 130)"/>
-      <ellipse cx="35" cy="110" rx="28" ry="9" fill="#2a6e4a" opacity="0.5" transform="rotate(-55 35 110)"/>
-      <ellipse cx="150" cy="100" rx="25" ry="8" fill="#2a6e4a" opacity="0.5" transform="rotate(45 150 100)"/>
-      <ellipse cx="80" cy="155" rx="32" ry="10" fill="#1a5c3a" opacity="0.4" transform="rotate(-20 80 155)"/>
-      <!-- Silver leaves -->
-      <ellipse cx="120" cy="150" rx="22" ry="7" fill="#8a9aaa" opacity="0.35" transform="rotate(15 120 150)"/>
-      <ellipse cx="30" cy="80" rx="18" ry="6" fill="#9aaaba" opacity="0.3" transform="rotate(-60 30 80)"/>
-      <!-- Rose 1 - Large dark blue -->
-      <circle cx="70" cy="55" r="30" fill="#1a3a6c"/>
-      <circle cx="70" cy="55" r="24" fill="#2050a0"/>
-      <circle cx="70" cy="55" r="18" fill="#2e6b9e"/>
-      <circle cx="70" cy="55" r="12" fill="#4080b8"/>
-      <circle cx="70" cy="55" r="7" fill="#1a3a6c"/>
-      <!-- Rose 2 - Medium blue -->
-      <circle cx="120" cy="50" r="25" fill="#2e6b9e"/>
-      <circle cx="120" cy="50" r="20" fill="#4080b8"/>
-      <circle cx="120" cy="50" r="14" fill="#5ba3d9"/>
-      <circle cx="120" cy="50" r="9" fill="#2e6b9e"/>
-      <!-- Rose 3 - Light blue -->
-      <circle cx="95" cy="85" r="22" fill="#4080b8"/>
-      <circle cx="95" cy="85" r="17" fill="#5ba3d9"/>
-      <circle cx="95" cy="85" r="12" fill="#a8d4f0"/>
-      <circle cx="95" cy="85" r="7" fill="#4080b8"/>
-      <!-- Rose 4 - Silver -->
-      <circle cx="50" cy="90" r="20" fill="#8a9ab0"/>
-      <circle cx="50" cy="90" r="15" fill="#a0b0c0"/>
-      <circle cx="50" cy="90" r="10" fill="#c0c8d0"/>
-      <circle cx="50" cy="90" r="6" fill="#8a9ab0"/>
-      <!-- Rose 5 - Small accent -->
-      <circle cx="135" cy="85" r="16" fill="#1a3a6c"/>
-      <circle cx="135" cy="85" r="12" fill="#2e5a8e"/>
-      <circle cx="135" cy="85" r="8" fill="#4080b8"/>
-      <circle cx="135" cy="85" r="5" fill="#1a3a6c"/>
-      <!-- Small buds -->
-      <circle cx="40" cy="65" r="10" fill="#5ba3d9" opacity="0.8"/>
-      <circle cx="40" cy="65" r="6" fill="#2e6b9e"/>
-      <circle cx="155" cy="65" r="8" fill="#c0c0c0" opacity="0.6"/>
-      <circle cx="155" cy="65" r="5" fill="#a0a8b0"/>
-      <!-- Lavender accents -->
-      <circle cx="100" cy="115" r="5" fill="#7a6abf" opacity="0.6"/>
-      <circle cx="65" cy="120" r="4" fill="#8a7acf" opacity="0.5"/>
-      <circle cx="130" cy="110" r="4" fill="#7a6abf" opacity="0.5"/>
-      <circle cx="110" cy="125" r="3" fill="#9a8adf" opacity="0.4"/>
+    <svg viewBox="0 0 220 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- leaves -->
+      <ellipse cx="80" cy="155" rx="9" ry="38" fill="#0d5520" opacity="0.65" transform="rotate(28 80 155)"/>
+      <ellipse cx="115" cy="165" rx="8" ry="32" fill="#0a6618" opacity="0.55" transform="rotate(-10 115 165)"/>
+      <ellipse cx="50" cy="130" rx="7" ry="26" fill="#0d5520" opacity="0.5" transform="rotate(50 50 130)"/>
+      <ellipse cx="150" cy="140" rx="7" ry="30" fill="#0a6618" opacity="0.5" transform="rotate(-30 150 140)"/>
+      <ellipse cx="90" cy="175" rx="6" ry="22" fill="#128022" opacity="0.45" transform="rotate(-5 90 175)"/>
+      <!-- stems -->
+      <path d="M100 180 Q95 140 80 100" stroke="#0d5520" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <path d="M100 180 Q110 135 140 95" stroke="#0a6618" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M100 180 Q100 145 100 110" stroke="#128022" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <!-- large deep-blue rose (left) -->
+      <g transform="translate(72,85)">
+        <ellipse cx="0" cy="0" rx="34" ry="38" fill="#0d3580" opacity="0.9"/>
+        <ellipse cx="-14" cy="-20" rx="26" ry="30" fill="#1a4fa0" opacity="0.82" transform="rotate(-22)"/>
+        <ellipse cx="16" cy="-18" rx="22" ry="28" fill="#0a2a6a" opacity="0.82" transform="rotate(18)"/>
+        <ellipse cx="0" cy="-28" rx="18" ry="24" fill="#1f60c0" opacity="0.72" transform="rotate(-5)"/>
+        <ellipse cx="0" cy="-10" rx="16" ry="20" fill="#0a2060" opacity="0.92"/>
+        <circle cx="0" cy="-8" r="10" fill="#071840" opacity="0.97"/>
+        <circle cx="0" cy="-8" r="5" fill="#102878"/>
+        <!-- petal sheen -->
+        <ellipse cx="-8" cy="-14" rx="5" ry="10" fill="#4080d8" opacity="0.22" transform="rotate(-15)"/>
+        <ellipse cx="8" cy="-15" rx="4" ry="9" fill="#3070c8" opacity="0.18" transform="rotate(12)"/>
+      </g>
+      <!-- medium cobalt rose (right) -->
+      <g transform="translate(148,75)">
+        <ellipse cx="0" cy="0" rx="26" ry="29" fill="#1040a0" opacity="0.85"/>
+        <ellipse cx="-11" cy="-15" rx="20" ry="23" fill="#1a55b5" opacity="0.78" transform="rotate(-20)"/>
+        <ellipse cx="13" cy="-13" rx="17" ry="21" fill="#0c308a" opacity="0.78" transform="rotate(16)"/>
+        <ellipse cx="0" cy="-8" rx="13" ry="16" fill="#0a2070" opacity="0.9"/>
+        <circle cx="0" cy="-6" r="8" fill="#060e30" opacity="0.95"/>
+        <circle cx="0" cy="-6" r="4" fill="#0e2878"/>
+      </g>
+      <!-- small bud top -->
+      <g transform="translate(105,48)">
+        <ellipse cx="0" cy="0" rx="14" ry="17" fill="#1450b0" opacity="0.78"/>
+        <ellipse cx="-6" cy="-8" rx="10" ry="13" fill="#1e60c0" opacity="0.7" transform="rotate(-18)"/>
+        <circle cx="0" cy="-4" r="6" fill="#071840" opacity="0.9"/>
+      </g>
+      <!-- tiny accent buds -->
+      <ellipse cx="38" cy="100" rx="8" ry="10" fill="#1860c8" opacity="0.6" transform="rotate(15 38 100)"/>
+      <circle cx="38" cy="96" r="4" fill="#050f30" opacity="0.85"/>
+      <ellipse cx="170" cy="108" rx="7" ry="9" fill="#1450a8" opacity="0.55" transform="rotate(-10 170 108)"/>
+      <circle cx="170" cy="104" r="3.5" fill="#050f30" opacity="0.8"/>
+      <!-- small lavender accent flowers -->
+      <circle cx="30" cy="68" r="5" fill="#6060b8" opacity="0.4"/>
+      <circle cx="28" cy="58" r="3.5" fill="#7070c8" opacity="0.35"/>
+      <circle cx="37" cy="60" r="3" fill="#5a5ab0" opacity="0.35"/>
+      <!-- gold sparkle dots -->
+      <circle cx="20" cy="45" r="2" fill="#c9a84c" opacity="0.6"/>
+      <circle cx="185" cy="55" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      <circle cx="110" cy="20" r="2.5" fill="#c9a84c" opacity="0.55"/>
+      <circle cx="60" cy="35" r="1.5" fill="#d4b86a" opacity="0.5"/>
+      <!-- silver sparkle dots -->
+      <circle cx="195" cy="90" r="1.5" fill="#b0c8e0" opacity="0.6"/>
+      <circle cx="15" cy="120" r="1" fill="#b0c8e0" opacity="0.5"/>
     </svg>
   </div>
 
+  <!-- ── BOUQUET TOP-RIGHT ── -->
   <div class="bouquet top-right sway-b">
-    <svg width="180" height="180" viewBox="0 0 200 200" fill="none">
-      <ellipse cx="145" cy="140" rx="35" ry="12" fill="#1a5c3a" opacity="0.7" transform="rotate(40 145 140)"/>
-      <ellipse cx="60" cy="130" rx="30" ry="10" fill="#1a5c3a" opacity="0.6" transform="rotate(-30 60 130)"/>
-      <ellipse cx="165" cy="110" rx="28" ry="9" fill="#2a6e4a" opacity="0.5" transform="rotate(55 165 110)"/>
-      <ellipse cx="50" cy="100" rx="25" ry="8" fill="#2a6e4a" opacity="0.5" transform="rotate(-45 50 100)"/>
-      <ellipse cx="80" cy="150" rx="22" ry="7" fill="#8a9aaa" opacity="0.35" transform="rotate(-15 80 150)"/>
-      <ellipse cx="170" cy="80" rx="18" ry="6" fill="#9aaaba" opacity="0.3" transform="rotate(60 170 80)"/>
-      <!-- Rose cluster -->
-      <circle cx="130" cy="50" r="32" fill="#1a3a6c"/>
-      <circle cx="130" cy="50" r="25" fill="#2050a0"/>
-      <circle cx="130" cy="50" r="18" fill="#2e6b9e"/>
-      <circle cx="130" cy="50" r="12" fill="#4080b8"/>
-      <circle cx="130" cy="50" r="7" fill="#1a3a6c"/>
-      <circle cx="80" cy="55" r="26" fill="#2e6b9e"/>
-      <circle cx="80" cy="55" r="20" fill="#4080b8"/>
-      <circle cx="80" cy="55" r="14" fill="#5ba3d9"/>
-      <circle cx="80" cy="55" r="9" fill="#2e6b9e"/>
-      <circle cx="105" cy="82" r="24" fill="#4080b8"/>
-      <circle cx="105" cy="82" r="18" fill="#5ba3d9"/>
-      <circle cx="105" cy="82" r="12" fill="#a8d4f0"/>
-      <circle cx="105" cy="82" r="7" fill="#4080b8"/>
-      <circle cx="150" cy="85" r="18" fill="#8a9ab0"/>
-      <circle cx="150" cy="85" r="13" fill="#a0b0c0"/>
-      <circle cx="150" cy="85" r="8" fill="#c0c8d0"/>
-      <circle cx="150" cy="85" r="5" fill="#8a9ab0"/>
-      <circle cx="60" cy="85" r="14" fill="#c0c0c0" opacity="0.7"/>
-      <circle cx="60" cy="85" r="10" fill="#d0d0d8"/>
-      <circle cx="60" cy="85" r="6" fill="#a0a8b0"/>
-      <circle cx="100" cy="112" r="5" fill="#7a6abf" opacity="0.6"/>
-      <circle cx="135" cy="115" r="4" fill="#8a7acf" opacity="0.5"/>
-      <circle cx="70" cy="110" r="4" fill="#7a6abf" opacity="0.5"/>
+    <svg viewBox="0 0 240 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- leaves -->
+      <ellipse cx="155" cy="158" rx="9" ry="38" fill="#0d5520" opacity="0.65" transform="rotate(-28 155 158)"/>
+      <ellipse cx="118" cy="165" rx="8" ry="32" fill="#0a6618" opacity="0.55" transform="rotate(10 118 165)"/>
+      <ellipse cx="185" cy="130" rx="7" ry="26" fill="#0d5520" opacity="0.5" transform="rotate(-50 185 130)"/>
+      <ellipse cx="85" cy="142" rx="7" ry="30" fill="#0a6618" opacity="0.5" transform="rotate(30 85 142)"/>
+      <ellipse cx="145" cy="178" rx="6" ry="22" fill="#128022" opacity="0.45" transform="rotate(5 145 178)"/>
+      <!-- stems -->
+      <path d="M135 182 Q140 138 158 98" stroke="#0d5520" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <path d="M135 182 Q120 135 88 92" stroke="#0a6618" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <path d="M135 182 Q135 145 135 108" stroke="#128022" stroke-width="1.2" fill="none" opacity="0.6"/>
+      <!-- large deep-blue rose (right side) -->
+      <g transform="translate(168,80)">
+        <ellipse cx="0" cy="0" rx="36" ry="40" fill="#0d3580" opacity="0.9"/>
+        <ellipse cx="-15" cy="-21" rx="27" ry="31" fill="#1a4fa0" opacity="0.82" transform="rotate(-22)"/>
+        <ellipse cx="17" cy="-19" rx="23" ry="29" fill="#0a2a6a" opacity="0.82" transform="rotate(18)"/>
+        <ellipse cx="0" cy="-30" rx="19" ry="25" fill="#1f60c0" opacity="0.72" transform="rotate(-5)"/>
+        <ellipse cx="0" cy="-11" rx="17" ry="21" fill="#0a2060" opacity="0.92"/>
+        <circle cx="0" cy="-9" r="11" fill="#071840" opacity="0.97"/>
+        <circle cx="0" cy="-9" r="5.5" fill="#102878"/>
+        <ellipse cx="-9" cy="-15" rx="5" ry="11" fill="#4080d8" opacity="0.2" transform="rotate(-15)"/>
+      </g>
+      <!-- medium cobalt rose (left side) -->
+      <g transform="translate(82,70)">
+        <ellipse cx="0" cy="0" rx="28" ry="31" fill="#1040a0" opacity="0.85"/>
+        <ellipse cx="-12" cy="-16" rx="21" ry="24" fill="#1a55b5" opacity="0.78" transform="rotate(-20)"/>
+        <ellipse cx="14" cy="-14" rx="18" ry="22" fill="#0c308a" opacity="0.78" transform="rotate(16)"/>
+        <ellipse cx="0" cy="-9" rx="14" ry="17" fill="#0a2070" opacity="0.9"/>
+        <circle cx="0" cy="-7" r="9" fill="#060e30" opacity="0.95"/>
+        <circle cx="0" cy="-7" r="4.5" fill="#0e2878"/>
+      </g>
+      <!-- small bud top-center -->
+      <g transform="translate(128,44)">
+        <ellipse cx="0" cy="0" rx="15" ry="18" fill="#1450b0" opacity="0.78"/>
+        <ellipse cx="-6" cy="-9" rx="11" ry="14" fill="#1e60c0" opacity="0.7" transform="rotate(-18)"/>
+        <circle cx="0" cy="-5" r="7" fill="#071840" opacity="0.9"/>
+      </g>
+      <!-- tiny accent buds -->
+      <ellipse cx="202" cy="100" rx="9" ry="11" fill="#1860c8" opacity="0.6" transform="rotate(-15 202 100)"/>
+      <circle cx="202" cy="96" r="4.5" fill="#050f30" opacity="0.85"/>
+      <ellipse cx="60" cy="110" rx="8" ry="10" fill="#1450a8" opacity="0.55" transform="rotate(10 60 110)"/>
+      <circle cx="60" cy="106" r="4" fill="#050f30" opacity="0.8"/>
+      <!-- lavender accent -->
+      <circle cx="215" cy="65" r="5.5" fill="#6060b8" opacity="0.4"/>
+      <circle cx="217" cy="55" r="3.5" fill="#7070c8" opacity="0.35"/>
+      <circle cx="207" cy="60" r="3" fill="#5a5ab0" opacity="0.35"/>
+      <!-- gold / silver sparkles -->
+      <circle cx="220" cy="40" r="2" fill="#c9a84c" opacity="0.6"/>
+      <circle cx="45" cy="50" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      <circle cx="128" cy="18" r="2.5" fill="#c9a84c" opacity="0.55"/>
+      <circle cx="185" cy="30" r="1.5" fill="#d4b86a" opacity="0.5"/>
+      <circle cx="22" cy="88" r="1.5" fill="#b0c8e0" opacity="0.6"/>
+      <circle cx="230" cy="130" r="1" fill="#b0c8e0" opacity="0.5"/>
     </svg>
   </div>
 
+  <!-- ── BOUQUET BOT-LEFT ── -->
   <div class="bouquet bot-left sway-b">
-    <svg width="160" height="160" viewBox="0 0 200 200" fill="none">
-      <ellipse cx="60" cy="50" rx="30" ry="10" fill="#1a5c3a" opacity="0.6" transform="rotate(-35 60 50)"/>
-      <ellipse cx="140" cy="60" rx="25" ry="8" fill="#2a6e4a" opacity="0.5" transform="rotate(40 140 60)"/>
-      <ellipse cx="100" cy="40" rx="20" ry="7" fill="#9aaaba" opacity="0.3" transform="rotate(10 100 40)"/>
-      <circle cx="80" cy="120" r="26" fill="#2e6b9e"/>
-      <circle cx="80" cy="120" r="20" fill="#4080b8"/>
-      <circle cx="80" cy="120" r="14" fill="#5ba3d9"/>
-      <circle cx="80" cy="120" r="8" fill="#2e6b9e"/>
-      <circle cx="120" cy="130" r="22" fill="#1a3a6c"/>
-      <circle cx="120" cy="130" r="16" fill="#2e5a8e"/>
-      <circle cx="120" cy="130" r="10" fill="#4080b8"/>
-      <circle cx="120" cy="130" r="6" fill="#1a3a6c"/>
-      <circle cx="55" cy="140" r="16" fill="#c0c0c0" opacity="0.7"/>
-      <circle cx="55" cy="140" r="11" fill="#d0d0d8"/>
-      <circle cx="55" cy="140" r="7" fill="#a0a8b0"/>
-      <circle cx="100" cy="155" r="12" fill="#5ba3d9" opacity="0.7"/>
-      <circle cx="100" cy="155" r="8" fill="#a8d4f0"/>
-      <circle cx="90" cy="95" r="4" fill="#7a6abf" opacity="0.5"/>
-      <circle cx="130" cy="105" r="3" fill="#8a7acf" opacity="0.4"/>
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- leaves -->
+      <ellipse cx="90" cy="60" rx="8" ry="35" fill="#0d5520" opacity="0.62" transform="rotate(-22 90 60)"/>
+      <ellipse cx="120" cy="75" rx="7" ry="28" fill="#0a6618" opacity="0.55" transform="rotate(12 120 75)"/>
+      <ellipse cx="55" cy="85" rx="6" ry="24" fill="#128022" opacity="0.5" transform="rotate(40 55 85)"/>
+      <ellipse cx="155" cy="70" rx="6" ry="22" fill="#0d5520" opacity="0.48" transform="rotate(-35 155 70)"/>
+      <!-- main large rose -->
+      <g transform="translate(100,118)">
+        <ellipse cx="0" cy="0" rx="40" ry="44" fill="#0d3580" opacity="0.9"/>
+        <ellipse cx="-16" cy="-24" rx="30" ry="34" fill="#1a4fa0" opacity="0.82" transform="rotate(-24)"/>
+        <ellipse cx="18" cy="-21" rx="25" ry="31" fill="#0a2a6a" opacity="0.82" transform="rotate(19)"/>
+        <ellipse cx="0" cy="-32" rx="20" ry="26" fill="#1f60c0" opacity="0.72"/>
+        <ellipse cx="0" cy="-14" rx="18" ry="22" fill="#0a2060" opacity="0.92"/>
+        <circle cx="0" cy="-11" r="12" fill="#071840" opacity="0.97"/>
+        <circle cx="0" cy="-11" r="6" fill="#102878"/>
+        <ellipse cx="-10" cy="-17" rx="6" ry="12" fill="#4080d8" opacity="0.2" transform="rotate(-15)"/>
+      </g>
+      <!-- second medium rose -->
+      <g transform="translate(50,95)">
+        <ellipse cx="0" cy="0" rx="25" ry="28" fill="#1040a0" opacity="0.82"/>
+        <ellipse cx="-10" cy="-14" rx="19" ry="22" fill="#1a55b5" opacity="0.76" transform="rotate(-20)"/>
+        <ellipse cx="12" cy="-12" rx="16" ry="20" fill="#0c308a" opacity="0.76" transform="rotate(15)"/>
+        <ellipse cx="0" cy="-8" rx="12" ry="15" fill="#0a2070" opacity="0.88"/>
+        <circle cx="0" cy="-6" r="8" fill="#060e30" opacity="0.95"/>
+        <circle cx="0" cy="-6" r="4" fill="#0e2878"/>
+      </g>
+      <!-- bud top right -->
+      <g transform="translate(155,60)">
+        <ellipse cx="0" cy="0" rx="14" ry="16" fill="#1450b0" opacity="0.75"/>
+        <ellipse cx="-6" cy="-8" rx="10" ry="12" fill="#1e60c0" opacity="0.68" transform="rotate(-18)"/>
+        <circle cx="0" cy="-4" r="6" fill="#071840" opacity="0.88"/>
+      </g>
+      <!-- lavender dots -->
+      <circle cx="30" cy="148" r="5" fill="#6060b8" opacity="0.38"/>
+      <circle cx="22" cy="138" r="3.5" fill="#7070c8" opacity="0.33"/>
+      <!-- gold sparkles -->
+      <circle cx="170" cy="155" r="2" fill="#c9a84c" opacity="0.6"/>
+      <circle cx="15" cy="50" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      <circle cx="100" cy="20" r="2" fill="#d4b86a" opacity="0.55"/>
+      <circle cx="190" cy="100" r="1.5" fill="#b0c8e0" opacity="0.55"/>
     </svg>
   </div>
 
+  <!-- ── BOUQUET BOT-RIGHT ── -->
   <div class="bouquet bot-right sway-a">
-    <svg width="160" height="160" viewBox="0 0 200 200" fill="none">
-      <ellipse cx="140" cy="50" rx="30" ry="10" fill="#1a5c3a" opacity="0.6" transform="rotate(35 140 50)"/>
-      <ellipse cx="60" cy="60" rx="25" ry="8" fill="#2a6e4a" opacity="0.5" transform="rotate(-40 60 60)"/>
-      <circle cx="120" cy="120" r="28" fill="#1a3a6c"/>
-      <circle cx="120" cy="120" r="22" fill="#2050a0"/>
-      <circle cx="120" cy="120" r="16" fill="#2e6b9e"/>
-      <circle cx="120" cy="120" r="10" fill="#4080b8"/>
-      <circle cx="120" cy="120" r="6" fill="#1a3a6c"/>
-      <circle cx="80" cy="130" r="20" fill="#4080b8"/>
-      <circle cx="80" cy="130" r="15" fill="#5ba3d9"/>
-      <circle cx="80" cy="130" r="10" fill="#a8d4f0"/>
-      <circle cx="80" cy="130" r="6" fill="#4080b8"/>
-      <circle cx="145" cy="140" r="16" fill="#8a9ab0"/>
-      <circle cx="145" cy="140" r="11" fill="#c0c8d0"/>
-      <circle cx="145" cy="140" r="7" fill="#8a9ab0"/>
-      <circle cx="100" cy="100" r="4" fill="#7a6abf" opacity="0.5"/>
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- leaves -->
+      <ellipse cx="110" cy="60" rx="8" ry="35" fill="#0d5520" opacity="0.62" transform="rotate(22 110 60)"/>
+      <ellipse cx="80" cy="75" rx="7" ry="28" fill="#0a6618" opacity="0.55" transform="rotate(-12 80 75)"/>
+      <ellipse cx="145" cy="85" rx="6" ry="24" fill="#128022" opacity="0.5" transform="rotate(-40 145 85)"/>
+      <ellipse cx="45" cy="70" rx="6" ry="22" fill="#0d5520" opacity="0.48" transform="rotate(35 45 70)"/>
+      <!-- main large rose -->
+      <g transform="translate(100,118)">
+        <ellipse cx="0" cy="0" rx="40" ry="44" fill="#0d3580" opacity="0.9"/>
+        <ellipse cx="16" cy="-24" rx="30" ry="34" fill="#1a4fa0" opacity="0.82" transform="rotate(24)"/>
+        <ellipse cx="-18" cy="-21" rx="25" ry="31" fill="#0a2a6a" opacity="0.82" transform="rotate(-19)"/>
+        <ellipse cx="0" cy="-32" rx="20" ry="26" fill="#1f60c0" opacity="0.72"/>
+        <ellipse cx="0" cy="-14" rx="18" ry="22" fill="#0a2060" opacity="0.92"/>
+        <circle cx="0" cy="-11" r="12" fill="#071840" opacity="0.97"/>
+        <circle cx="0" cy="-11" r="6" fill="#102878"/>
+        <ellipse cx="10" cy="-17" rx="6" ry="12" fill="#4080d8" opacity="0.2" transform="rotate(15)"/>
+      </g>
+      <!-- second medium rose -->
+      <g transform="translate(150,95)">
+        <ellipse cx="0" cy="0" rx="25" ry="28" fill="#1040a0" opacity="0.82"/>
+        <ellipse cx="10" cy="-14" rx="19" ry="22" fill="#1a55b5" opacity="0.76" transform="rotate(20)"/>
+        <ellipse cx="-12" cy="-12" rx="16" ry="20" fill="#0c308a" opacity="0.76" transform="rotate(-15)"/>
+        <ellipse cx="0" cy="-8" rx="12" ry="15" fill="#0a2070" opacity="0.88"/>
+        <circle cx="0" cy="-6" r="8" fill="#060e30" opacity="0.95"/>
+        <circle cx="0" cy="-6" r="4" fill="#0e2878"/>
+      </g>
+      <!-- bud top left -->
+      <g transform="translate(45,60)">
+        <ellipse cx="0" cy="0" rx="14" ry="16" fill="#1450b0" opacity="0.75"/>
+        <ellipse cx="6" cy="-8" rx="10" ry="12" fill="#1e60c0" opacity="0.68" transform="rotate(18)"/>
+        <circle cx="0" cy="-4" r="6" fill="#071840" opacity="0.88"/>
+      </g>
+      <!-- lavender dots -->
+      <circle cx="170" cy="148" r="5" fill="#6060b8" opacity="0.38"/>
+      <circle cx="178" cy="138" r="3.5" fill="#7070c8" opacity="0.33"/>
+      <!-- gold sparkles -->
+      <circle cx="30" cy="155" r="2" fill="#c9a84c" opacity="0.6"/>
+      <circle cx="185" cy="50" r="1.5" fill="#c9a84c" opacity="0.5"/>
+      <circle cx="100" cy="20" r="2" fill="#d4b86a" opacity="0.55"/>
+      <circle cx="10" cy="100" r="1.5" fill="#b0c8e0" opacity="0.55"/>
     </svg>
   </div>
 
@@ -396,29 +488,38 @@ section{
   <a href="#countdown-section" class="scroll-hint">⌄</a>
 </section>
 
-<!-- RECEPTION SECTION -->
+<!-- ══════════ RECEPCIÓN ══════════ -->
 <section class="reception" id="recepcion">
-  <div class="bouquet top-right sway-a">
-    <svg width="140" height="140" viewBox="0 0 200 200" fill="none">
-      <ellipse cx="100" cy="140" rx="30" ry="10" fill="#1a5c3a" opacity="0.5" transform="rotate(20 100 140)"/>
-      <circle cx="100" cy="70" r="26" fill="#2e6b9e"/>
-      <circle cx="100" cy="70" r="20" fill="#4080b8"/>
-      <circle cx="100" cy="70" r="14" fill="#5ba3d9"/>
-      <circle cx="100" cy="70" r="8" fill="#2e6b9e"/>
-      <circle cx="140" cy="80" r="18" fill="#c0c0c0" opacity="0.7"/>
-      <circle cx="140" cy="80" r="13" fill="#d0d0d8"/>
-      <circle cx="140" cy="80" r="8" fill="#a0a8b0"/>
-      <circle cx="65" cy="90" r="14" fill="#1a3a6c"/>
-      <circle cx="65" cy="90" r="10" fill="#2e5a8e"/>
-      <circle cx="65" cy="90" r="6" fill="#4080b8"/>
-      <circle cx="110" cy="105" r="4" fill="#7a6abf" opacity="0.5"/>
+  <!-- small corner bouquet -->
+  <div class="bouquet top-right sway-a" style="width:clamp(100px,22vw,160px);opacity:0.85;">
+    <svg viewBox="0 0 160 150" fill="none">
+      <ellipse cx="90" cy="110" rx="6" ry="26" fill="#0d5520" opacity="0.55" transform="rotate(-20 90 110)"/>
+      <ellipse cx="115" cy="118" rx="5" ry="20" fill="#0a6618" opacity="0.48" transform="rotate(8 115 118)"/>
+      <g transform="translate(100,72)">
+        <ellipse cx="0" cy="0" rx="26" ry="29" fill="#0d3580" opacity="0.88"/>
+        <ellipse cx="-11" cy="-16" rx="20" ry="23" fill="#1a4fa0" opacity="0.8" transform="rotate(-22)"/>
+        <ellipse cx="12" cy="-14" rx="17" ry="21" fill="#0a2a6a" opacity="0.8" transform="rotate(17)"/>
+        <circle cx="0" cy="-7" r="9" fill="#071840" opacity="0.95"/>
+        <circle cx="0" cy="-7" r="4.5" fill="#102878"/>
+      </g>
+      <g transform="translate(50,80)">
+        <ellipse cx="0" cy="0" rx="18" ry="20" fill="#1040a0" opacity="0.8"/>
+        <ellipse cx="-8" cy="-10" rx="13" ry="16" fill="#1a55b5" opacity="0.72" transform="rotate(-18)"/>
+        <circle cx="0" cy="-5" r="7" fill="#060e30" opacity="0.9"/>
+        <circle cx="0" cy="-5" r="3.5" fill="#0e2878"/>
+      </g>
+      <circle cx="135" cy="38" r="1.5" fill="#c9a84c" opacity="0.6"/>
+      <circle cx="20" cy="55" r="1" fill="#c9a84c" opacity="0.5"/>
     </svg>
   </div>
+
   <div class="section-title">Lugar de la Celebración</div>
   <div class="reception-card">
     <p style="font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#7ab0d8;margin-bottom:6px">Lugar del evento</p>
     <div class="venue-name">Sala de Té Rossy</div>
-    <p style="font-family:'Montserrat',sans-serif;font-size:12px;color:#8ab0d0;line-height:1.6;margin-bottom:15px;letter-spacing:1px">Residencial Alameda, Polígono D #1,<br>Final Av. Independencia Norte,<br>Santa Ana Centro</p>
+    <p style="font-family:'Montserrat',sans-serif;font-size:13px;color:#8ab0d0;line-height:1.6;margin-bottom:15px;letter-spacing:1px">
+      Residencial Alameda, Polígono D #1,<br>Final Av. Independencia Norte,<br>Santa Ana Centro
+    </p>
     <p style="font-family:'Montserrat',sans-serif;font-size:14px;color:#8ab0d0;margin-bottom:20px;letter-spacing:1px">Cómo llegar</p>
     <div class="map-buttons">
       <a href="https://maps.app.goo.gl/UK4nvW9MnkDtPwjw6" target="_blank" rel="noopener" class="map-btn google">
@@ -433,24 +534,31 @@ section{
   </div>
 </section>
 
-<!-- RSVP SECTION -->
+<!-- ══════════ RSVP ══════════ -->
 <section class="rsvp" id="confirmar">
-  <div class="bouquet top-left sway-b">
-    <svg width="140" height="140" viewBox="0 0 200 200" fill="none">
-      <ellipse cx="100" cy="140" rx="28" ry="9" fill="#1a5c3a" opacity="0.5" transform="rotate(-20 100 140)"/>
-      <circle cx="90" cy="75" r="24" fill="#4080b8"/>
-      <circle cx="90" cy="75" r="18" fill="#5ba3d9"/>
-      <circle cx="90" cy="75" r="12" fill="#a8d4f0"/>
-      <circle cx="90" cy="75" r="7" fill="#4080b8"/>
-      <circle cx="130" cy="85" r="18" fill="#1a3a6c"/>
-      <circle cx="130" cy="85" r="13" fill="#2e5a8e"/>
-      <circle cx="130" cy="85" r="8" fill="#4080b8"/>
-      <circle cx="65" cy="95" r="14" fill="#c0c0c0" opacity="0.7"/>
-      <circle cx="65" cy="95" r="10" fill="#d0d0d8"/>
-      <circle cx="65" cy="95" r="6" fill="#a0a8b0"/>
-      <circle cx="105" cy="110" r="4" fill="#7a6abf" opacity="0.5"/>
+  <!-- small corner bouquet -->
+  <div class="bouquet top-left sway-b" style="width:clamp(90px,20vw,145px);opacity:0.82;">
+    <svg viewBox="0 0 145 140" fill="none">
+      <ellipse cx="60" cy="105" rx="6" ry="24" fill="#0d5520" opacity="0.55" transform="rotate(20 60 105)"/>
+      <ellipse cx="35" cy="112" rx="5" ry="18" fill="#0a6618" opacity="0.48" transform="rotate(-8 35 112)"/>
+      <g transform="translate(52,68)">
+        <ellipse cx="0" cy="0" rx="24" ry="27" fill="#0d3580" opacity="0.88"/>
+        <ellipse cx="10" cy="-15" rx="18" ry="22" fill="#1a4fa0" opacity="0.8" transform="rotate(22)"/>
+        <ellipse cx="-11" cy="-13" rx="15" ry="19" fill="#0a2a6a" opacity="0.8" transform="rotate(-17)"/>
+        <circle cx="0" cy="-7" r="8" fill="#071840" opacity="0.95"/>
+        <circle cx="0" cy="-7" r="4" fill="#102878"/>
+      </g>
+      <g transform="translate(105,76)">
+        <ellipse cx="0" cy="0" rx="17" ry="19" fill="#1040a0" opacity="0.8"/>
+        <ellipse cx="7" cy="-10" rx="12" ry="15" fill="#1a55b5" opacity="0.72" transform="rotate(18)"/>
+        <circle cx="0" cy="-5" r="6.5" fill="#060e30" opacity="0.9"/>
+        <circle cx="0" cy="-5" r="3" fill="#0e2878"/>
+      </g>
+      <circle cx="15" cy="35" r="1.5" fill="#c9a84c" opacity="0.6"/>
+      <circle cx="130" cy="50" r="1" fill="#c9a84c" opacity="0.5"/>
     </svg>
   </div>
+
   <div class="section-title">Confirmar Asistencia</div>
   <div class="rsvp-card">
     <form id="rsvpForm" onsubmit="return handleSubmit(event)">
@@ -471,7 +579,7 @@ section{
   </div>
 </section>
 
-<!-- COUNTDOWN SECTION -->
+<!-- ══════════ CUENTA REGRESIVA ══════════ -->
 <section class="reception" id="countdown-section" style="min-height:auto;padding:60px 20px">
   <div class="section-title">Cuenta Regresiva</div>
   <div class="countdown" id="countdown"></div>
@@ -482,160 +590,104 @@ section{
 </div>
 
 <script>
-// REALISTIC BUTTERFLY CANVAS ANIMATION
-const canvas = document.getElementById('butterflyCanvas');
-const ctx = canvas.getContext('2d');
-let W, H;
-function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
-resize();
-window.addEventListener('resize', resize);
+/* ── CANVAS BUTTERFLIES ── */
+const canvas=document.getElementById('butterflyCanvas');
+const ctx=canvas.getContext('2d');
+let W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
 
-class Butterfly {
-  constructor(){
-    this.reset();
-    this.x = Math.random()*W;
-    this.y = Math.random()*H;
-  }
+class Butterfly{
+  constructor(){this.reset();this.x=Math.random()*W;this.y=Math.random()*H;}
   reset(){
-    this.x = Math.random()>0.5 ? -40 : W+40;
-    this.y = Math.random()*H*0.8;
-    this.vx = (Math.random()-0.5)*1.5;
-    this.vy = (Math.random()-0.5)*0.8;
-    this.size = 14 + Math.random()*14;
-    this.flapSpeed = 0.08 + Math.random()*0.06;
-    this.flapPhase = Math.random()*Math.PI*2;
-    this.wobble = Math.random()*Math.PI*2;
-    this.wobbleSpeed = 0.01 + Math.random()*0.01;
-    const palettes = [
+    this.x=Math.random()>0.5?-40:W+40;
+    this.y=Math.random()*H*0.8;
+    this.vx=(Math.random()-0.5)*1.5;
+    this.vy=(Math.random()-0.5)*0.8;
+    this.size=14+Math.random()*14;
+    this.flapSpeed=0.08+Math.random()*0.06;
+    this.flapPhase=Math.random()*Math.PI*2;
+    this.wobble=Math.random()*Math.PI*2;
+    this.wobbleSpeed=0.01+Math.random()*0.01;
+    const palettes=[
       ['#1a3a6c','#2e6b9e','#5ba3d9','#a8d4f0'],
       ['#2050a0','#4080b8','#70b0e0','#b0d8f0'],
       ['#8a9ab0','#a0b0c8','#c0c8d8','#e0e8f0'],
       ['#1a4a7c','#3070a0','#5090c0','#90c0e0'],
     ];
-    this.colors = palettes[Math.floor(Math.random()*palettes.length)];
-    this.opacity = 0.5 + Math.random()*0.4;
-    this.turnTimer = 0;
-    this.turnInterval = 120 + Math.random()*200;
+    this.colors=palettes[Math.floor(Math.random()*palettes.length)];
+    this.opacity=0.5+Math.random()*0.4;
+    this.turnTimer=0;
+    this.turnInterval=120+Math.random()*200;
   }
   update(){
-    this.flapPhase += this.flapSpeed;
-    this.wobble += this.wobbleSpeed;
+    this.flapPhase+=this.flapSpeed;
+    this.wobble+=this.wobbleSpeed;
     this.turnTimer++;
-    if(this.turnTimer > this.turnInterval){
-      this.vx += (Math.random()-0.5)*1.2;
-      this.vy += (Math.random()-0.5)*0.8;
-      this.vx = Math.max(-2, Math.min(2, this.vx));
-      this.vy = Math.max(-1.2, Math.min(1.2, this.vy));
-      this.turnTimer = 0;
-      this.turnInterval = 120 + Math.random()*200;
+    if(this.turnTimer>this.turnInterval){
+      this.vx+=(Math.random()-0.5)*1.2;
+      this.vy+=(Math.random()-0.5)*0.8;
+      this.vx=Math.max(-2,Math.min(2,this.vx));
+      this.vy=Math.max(-1.2,Math.min(1.2,this.vy));
+      this.turnTimer=0;
+      this.turnInterval=120+Math.random()*200;
     }
-    this.x += this.vx + Math.sin(this.wobble)*0.5;
-    this.y += this.vy + Math.cos(this.wobble*0.7)*0.3;
-    if(this.x < -60 || this.x > W+60 || this.y < -60 || this.y > H+60) this.reset();
+    this.x+=this.vx+Math.sin(this.wobble)*0.5;
+    this.y+=this.vy+Math.cos(this.wobble*0.7)*0.3;
+    if(this.x<-60||this.x>W+60||this.y<-60||this.y>H+60)this.reset();
   }
   draw(ctx){
-    const flap = Math.sin(this.flapPhase);
-    const flapAbs = Math.abs(flap);
-    const angle = Math.atan2(this.vy, this.vx);
+    const flap=Math.sin(this.flapPhase);
+    const flapAbs=Math.abs(flap);
+    const angle=Math.atan2(this.vy,this.vx);
     ctx.save();
-    ctx.translate(this.x, this.y);
-    ctx.rotate(angle * 0.3);
-    ctx.globalAlpha = this.opacity;
-    const s = this.size;
-    const wingSpread = 0.3 + flapAbs * 0.7;
-    // Upper wings
-    ctx.save();
-    ctx.scale(wingSpread, 1);
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.bezierCurveTo(-s*0.8, -s*0.9, -s*1.4, -s*0.3, -s*0.3, s*0.1);
-    ctx.fillStyle = this.colors[0];
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.bezierCurveTo(-s*0.5, -s*0.6, -s*0.9, -s*0.2, -s*0.2, s*0.05);
-    ctx.fillStyle = this.colors[1];
-    ctx.fill();
-    // Dots on wing
-    ctx.beginPath();
-    ctx.arc(-s*0.5, -s*0.3, s*0.08, 0, Math.PI*2);
-    ctx.fillStyle = this.colors[3];
-    ctx.globalAlpha = this.opacity * 0.6;
-    ctx.fill();
-    ctx.globalAlpha = this.opacity;
+    ctx.translate(this.x,this.y);
+    ctx.rotate(angle*0.3);
+    ctx.globalAlpha=this.opacity;
+    const s=this.size;
+    const wingSpread=0.3+flapAbs*0.7;
+    ctx.save();ctx.scale(wingSpread,1);
+    ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(-s*0.8,-s*0.9,-s*1.4,-s*0.3,-s*0.3,s*0.1);
+    ctx.fillStyle=this.colors[0];ctx.fill();
+    ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(-s*0.5,-s*0.6,-s*0.9,-s*0.2,-s*0.2,s*0.05);
+    ctx.fillStyle=this.colors[1];ctx.fill();
+    ctx.beginPath();ctx.arc(-s*0.5,-s*0.3,s*0.08,0,Math.PI*2);
+    ctx.fillStyle=this.colors[3];ctx.globalAlpha=this.opacity*0.6;ctx.fill();
+    ctx.globalAlpha=this.opacity;ctx.restore();
+    ctx.save();ctx.scale(wingSpread,1);
+    ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(s*0.8,-s*0.9,s*1.4,-s*0.3,s*0.3,s*0.1);
+    ctx.fillStyle=this.colors[0];ctx.fill();
+    ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(s*0.5,-s*0.6,s*0.9,-s*0.2,s*0.2,s*0.05);
+    ctx.fillStyle=this.colors[1];ctx.fill();
+    ctx.beginPath();ctx.arc(s*0.5,-s*0.3,s*0.08,0,Math.PI*2);
+    ctx.fillStyle=this.colors[3];ctx.globalAlpha=this.opacity*0.6;ctx.fill();
+    ctx.globalAlpha=this.opacity;ctx.restore();
+    ctx.save();ctx.scale(wingSpread,1);
+    ctx.beginPath();ctx.moveTo(0,s*0.05);ctx.bezierCurveTo(-s*0.7,s*0.1,-s*0.9,s*0.7,-s*0.1,s*0.5);
+    ctx.fillStyle=this.colors[2];ctx.fill();
+    ctx.beginPath();ctx.moveTo(0,s*0.05);ctx.bezierCurveTo(s*0.7,s*0.1,s*0.9,s*0.7,s*0.1,s*0.5);
+    ctx.fillStyle=this.colors[2];ctx.fill();
     ctx.restore();
-    // Right upper wing
-    ctx.save();
-    ctx.scale(wingSpread, 1);
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.bezierCurveTo(s*0.8, -s*0.9, s*1.4, -s*0.3, s*0.3, s*0.1);
-    ctx.fillStyle = this.colors[0];
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.bezierCurveTo(s*0.5, -s*0.6, s*0.9, -s*0.2, s*0.2, s*0.05);
-    ctx.fillStyle = this.colors[1];
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(s*0.5, -s*0.3, s*0.08, 0, Math.PI*2);
-    ctx.fillStyle = this.colors[3];
-    ctx.globalAlpha = this.opacity * 0.6;
-    ctx.fill();
-    ctx.globalAlpha = this.opacity;
-    ctx.restore();
-    // Lower wings
-    ctx.save();
-    ctx.scale(wingSpread, 1);
-    ctx.beginPath();
-    ctx.moveTo(0, s*0.05);
-    ctx.bezierCurveTo(-s*0.7, s*0.1, -s*0.9, s*0.7, -s*0.1, s*0.5);
-    ctx.fillStyle = this.colors[2];
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(0, s*0.05);
-    ctx.bezierCurveTo(s*0.7, s*0.1, s*0.9, s*0.7, s*0.1, s*0.5);
-    ctx.fillStyle = this.colors[2];
-    ctx.fill();
-    ctx.restore();
-    // Body
-    ctx.beginPath();
-    ctx.ellipse(0, s*0.05, s*0.04, s*0.25, 0, 0, Math.PI*2);
-    ctx.fillStyle = '#0a1530';
-    ctx.fill();
-    // Antennae
-    ctx.strokeStyle = this.colors[1];
-    ctx.lineWidth = 0.8;
-    ctx.globalAlpha = this.opacity * 0.7;
-    ctx.beginPath();
-    ctx.moveTo(0, -s*0.15);
-    ctx.quadraticCurveTo(-s*0.15, -s*0.45, -s*0.25, -s*0.5);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(0, -s*0.15);
-    ctx.quadraticCurveTo(s*0.15, -s*0.45, s*0.25, -s*0.5);
-    ctx.stroke();
-    // Antenna tips
-    ctx.beginPath();
-    ctx.arc(-s*0.25, -s*0.5, 1.5, 0, Math.PI*2);
-    ctx.arc(s*0.25, -s*0.5, 1.5, 0, Math.PI*2);
-    ctx.fillStyle = this.colors[3];
-    ctx.fill();
+    ctx.beginPath();ctx.ellipse(0,s*0.05,s*0.04,s*0.25,0,0,Math.PI*2);
+    ctx.fillStyle='#0a1530';ctx.fill();
+    ctx.strokeStyle=this.colors[1];ctx.lineWidth=0.8;ctx.globalAlpha=this.opacity*0.7;
+    ctx.beginPath();ctx.moveTo(0,-s*0.15);ctx.quadraticCurveTo(-s*0.15,-s*0.45,-s*0.25,-s*0.5);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(0,-s*0.15);ctx.quadraticCurveTo(s*0.15,-s*0.45,s*0.25,-s*0.5);ctx.stroke();
+    ctx.beginPath();ctx.arc(-s*0.25,-s*0.5,1.5,0,Math.PI*2);ctx.arc(s*0.25,-s*0.5,1.5,0,Math.PI*2);
+    ctx.fillStyle=this.colors[3];ctx.fill();
     ctx.restore();
   }
 }
-
-const butterflies = [];
-for(let i=0;i<8;i++) butterflies.push(new Butterfly());
-
+const butterflies=[];
+for(let i=0;i<8;i++)butterflies.push(new Butterfly());
 function animateButterflies(){
   ctx.clearRect(0,0,W,H);
-  butterflies.forEach(b=>{ b.update(); b.draw(ctx); });
+  butterflies.forEach(b=>{b.update();b.draw(ctx);});
   requestAnimationFrame(animateButterflies);
 }
 animateButterflies();
 
-// COUNTDOWN
+/* ── COUNTDOWN ── */
 function updateCountdown(){
   const target=new Date('2026-05-02T12:30:00').getTime();
   const diff=target-Date.now();
@@ -651,46 +703,29 @@ function updateCountdown(){
     <div class="countdown-item"><span class="num">${m}</span><span class="lbl">Min</span></div>
     <div class="countdown-item"><span class="num">${s}</span><span class="lbl">Seg</span></div>`;
 }
-updateCountdown();
-setInterval(updateCountdown,1000);
+updateCountdown();setInterval(updateCountdown,1000);
 
-// FLOATING PETALS
+/* ── FLOATING PETALS ── */
 function createPetal(){
-  const el=document.createElement('div');
-  el.className='floating-petal';
+  const el=document.createElement('div');el.className='floating-petal';
   const size=6+Math.random()*10;
   const colors=['#2e6b9e','#5ba3d9','#a8d4f0','#c0c0c0','#4080b8','#1a3a6c'];
   const shapes=['50%','60% 0 60% 0','0 60% 0 60%','40% 60% 40% 60%'];
-  el.style.cssText=`
-    left:${Math.random()*100}vw;width:${size}px;height:${size*1.3}px;
-    border-radius:${shapes[Math.floor(Math.random()*shapes.length)]};
-    background:${colors[Math.floor(Math.random()*colors.length)]};
-    animation-duration:${10+Math.random()*15}s;
-    animation-delay:${Math.random()*3}s;
-  `;
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),28000);
+  el.style.cssText=`left:${Math.random()*100}vw;width:${size}px;height:${size*1.3}px;border-radius:${shapes[Math.floor(Math.random()*shapes.length)]};background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${10+Math.random()*15}s;animation-delay:${Math.random()*3}s;`;
+  document.body.appendChild(el);setTimeout(()=>el.remove(),28000);
 }
 setInterval(createPetal,600);
 
-// SPARKLES
+/* ── SPARKLES ── */
 function createSparkle(){
-  const el=document.createElement('div');
-  el.className='sparkle';
-  el.style.cssText=`
-    left:${Math.random()*100}vw;top:${Math.random()*100}vh;
-    animation-duration:${2+Math.random()*3}s;
-    width:${2+Math.random()*3}px;height:${2+Math.random()*3}px;
-    background:${Math.random()>0.5?'#c0c0c0':'#5ba3d9'};
-    box-shadow:0 0 ${4+Math.random()*6}px ${Math.random()>0.5?'#c0c0c0':'#5ba3d9'};
-  `;
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),5000);
+  const el=document.createElement('div');el.className='sparkle';
+  el.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-duration:${2+Math.random()*3}s;width:${2+Math.random()*3}px;height:${2+Math.random()*3}px;background:${Math.random()>0.5?'#c0c0c0':'#5ba3d9'};box-shadow:0 0 ${4+Math.random()*6}px ${Math.random()>0.5?'#c0c0c0':'#5ba3d9'};`;
+  document.body.appendChild(el);setTimeout(()=>el.remove(),5000);
 }
 setInterval(createSparkle,300);
 
-// GOOGLE SHEETS
-const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzTa5hqM0TF4e4GHkZU4MNhlw18W9MjC658BuwaZt0qh8laJbsVcf_Ep3l8_IY1K6_B/exec';
+/* ── GOOGLE SHEETS ── */
+const SHEETS_WEBHOOK_URL='https://script.google.com/macros/s/AKfycbzTa5hqM0TF4e4GHkZU4MNhlw18W9MjC658BuwaZt0qh8laJbsVcf_Ep3l8_IY1K6_B/exec';
 
 async function handleSubmit(e){
   e.preventDefault();
@@ -698,8 +733,7 @@ async function handleSubmit(e){
   const count=parseInt(document.getElementById('guestCount').value);
   const btn=document.getElementById('submitBtn');
   if(!name||!count)return false;
-  btn.disabled=true;
-  btn.textContent='Enviando...';
+  btn.disabled=true;btn.textContent='Enviando...';
   try{
     const params=new URLSearchParams({nombre:name,personas:count,fecha:new Date().toLocaleString('es-SV')});
     await fetch(SHEETS_WEBHOOK_URL+'?'+params.toString(),{mode:'no-cors'});
